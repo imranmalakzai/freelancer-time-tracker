@@ -48,7 +48,7 @@ const NavLinks = [
         <NavLink key={index} to={link.path} className="text-black hover:text-blue-500 transition">{link.name}</NavLink>
     ))}
         </ul>
-        <button type="button" className="text-white mt-6 inline md:hidden text-sm hover:opacity-90 active:scale-95 transition-all w-40 h-11 rounded-full border bg-blue-600 cursor-pointer">
+        <button onClick={userLoggedIn ? ()=>{setUserLoggedIn(false),navigate("/")} : ()=> {navigate("/login")} } type="button" className="text-white mt-6 inline md:hidden text-sm hover:opacity-90 active:scale-95 transition-all w-40 h-11 rounded-full border bg-blue-600 cursor-pointer">
             {userLoggedIn ? "logout" :  "login"}
         </button>
     </div>
