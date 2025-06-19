@@ -11,7 +11,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/projects" element={<ProtextedRoute><ProjectsPage /></ProtextedRoute>} />
+        <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/dashboard" element={<Dashboard /> } />
         <Route path="/login" element={<Login />} />
       </Routes>
