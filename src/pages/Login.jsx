@@ -1,19 +1,38 @@
 import React, { useContext, useState } from 'react'
 import { closeIcon, right } from '../Assets/Images'
 import { AppContext } from '../context/AppContext'
+import toast from 'react-hot-toast';
 
 function Login() {
   const [state,setState] = useState("login");
   const [username,setUserName] = useState("")
   const [email,setEmail] = useState("")
   const [password,setPassword] = useState("")
-  const {navigate} = useContext(AppContext)
+  const {navigate,userLoggedIn,setUserLoggedIn} = useContext(AppContext)
   
 
 
   const handleForm = (e) => {
     e.preventDefault();
-    console.log({username,email,password});
+    if(state === "login"){
+      const user = JSON.parse(localStorage.getItem("freelancerUser"))
+      if (user){
+        if (user.email === email && user.password === password){
+          toast.success("logged in successfully")
+          navigate("/dashboard")
+          setUserLoggedIn(true)
+        }else{
+          toast.error("unauthorize..!")
+        }
+      }else{
+        toast.error("user not exist")
+      }
+    }else{
+      localStorage.setItem("freelancerUser",JSON.stringify({username,email,password}))
+      toast.success("register successfully")
+      setUserLoggedIn(true)
+      navigate("/projects")
+    }
   }
  
 
